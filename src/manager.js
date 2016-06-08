@@ -41,6 +41,7 @@ window['vueGoogleMapsInit'] = () => {
  */
 export const load = (apiKey, version, libraries, loadCn) => {
   if (!setUp) {
+    setUp = true;
     const googleMapScript = document.createElement('SCRIPT');
 
     // Allow apiKey to be an object.
@@ -91,7 +92,9 @@ export const load = (apiKey, version, libraries, loadCn) => {
     googleMapScript.setAttribute('defer', '');
     document.body.appendChild(googleMapScript);
   } else {
-    throw new Error('You already started the loading of google maps');
+    // removing this 'cause is causing webpack hot-reload to reload whole page
+    //throw new Error('You already started the loading of google maps');
+    return;
   }
 }
 
